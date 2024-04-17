@@ -1,8 +1,16 @@
+import { useState } from "react";
 import WeatherSidePanel from "../components/WeatherSidePanel";
-
-function WeatherSidePanelPage({ cities }) {
+import WeatherReport from "../components/WeatherReport";
+function WeatherSidePanelPage({ cities, setQuery }) {
+  const handleClick = (locationName) => {
+    setQuery(locationName);
+  };
   const renderCities = cities.map((city) => {
-    return <WeatherSidePanel key={city.locationId} name={city.locationName} />;
+    return (
+      <div onClick={() => handleClick(city.locationName)}>
+        <WeatherSidePanel key={city.locationId} name={city.locationName} />
+      </div>
+    );
   });
 
   return <div className="mb-10">{renderCities}</div>;
