@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import CurrentDate from "./Date";
 
 function NavBar({ isLogin, setIsLogIn }) {
@@ -8,16 +8,12 @@ function NavBar({ isLogin, setIsLogIn }) {
     <div>
       <nav className="bg-white border-green-200 dark:bg-green-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="https://www.github.com/rishabh0014"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-            target="__blank"
-          >
+          <Link to="/">
             <img src="add Image url" className="h-8" alt="Logo Image" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <div className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Weather App
-            </span>
-          </a>
+            </div>
+          </Link>
           <div>
             <CurrentDate />
           </div>
