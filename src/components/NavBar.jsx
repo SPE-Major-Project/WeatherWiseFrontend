@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginPage from "../pages/LogInPage";
-import SignupPage from "../pages/SignUpPage";
+import CurrentDate from "./Date";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -15,20 +13,23 @@ function NavBar() {
             className="flex items-center space-x-3 rtl:space-x-reverse"
             target="__blank"
           >
-            <img src="add Image url" class="h-8" alt="Logo Image" />
-            <span classname="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <img src="add Image url" className="h-8" alt="Logo Image" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Weather App
             </span>
           </a>
+          <div>
+            <CurrentDate />
+          </div>
           <div className="">
             <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
               onClick={() => navigate("/login")}
             >
               Log In
             </button>
             <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
               onClick={() => navigate("/signup")}
             >
               Sign Up
