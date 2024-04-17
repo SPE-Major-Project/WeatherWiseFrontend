@@ -5,7 +5,7 @@ function Footer() {
         © 2023{" "}
         <a
           href="https://www.github.com/rishabh0014"
-          classname="hover:underline"
+          className="hover:underline"
           target="__blank"
         >
           Rishabh™

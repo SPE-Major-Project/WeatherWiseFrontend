@@ -1,11 +1,13 @@
-import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import SearchBox from "../components/SearchBox";
 
 function HomePage() {
   return (
     <div>
       <NavBar />
-      <h1>Home Works</h1>
+      <div className="flex items-start justify-center pt-20">
+        <SearchBox />
+      </div>
     </div>
   );
 }
