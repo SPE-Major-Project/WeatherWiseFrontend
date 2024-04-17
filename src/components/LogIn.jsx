@@ -4,6 +4,7 @@ import { loginFields } from "../constants/FormFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./Input";
+import Services from "../services/Services";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -23,9 +24,25 @@ function Login({ setIsLogIn }) {
     authenticateUser();
   };
 
-  //Handle Login API Integration here
-  const authenticateUser = () => {
-    setIsLogIn(true);
+  const authenticateUser = async () => {
+    const user = {
+      email: loginState.emailaddress,
+      password: loginState.password,
+    };
+
+    try {
+      let val = await Services.logInUser(user);
+      if (val.data) {
+        setIsLogIn(true);
+      } else {
+        alert("Incorrect UserName or Password!! Try Again!!!!!");
+      }
+    } catch (error) {
+      console.error("Error authenticating user:", error);
+      alert(
+        "An error occurred while trying to log in. Please try again later."
+      );
+    }
   };
 
   return (
