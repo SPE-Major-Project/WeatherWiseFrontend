@@ -2,6 +2,7 @@ import { useState } from "react";
 import { signupFields } from "../constants/FormFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
+import Services from "../services/Services";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -14,13 +15,24 @@ function Signup() {
   const handleChange = (e) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(signupState);
-    createAccount();
-  };
 
-  const createAccount = () => {};
+    const user = {
+      email: signupState.emailaddress,
+      password: signupState.password,
+    };
+    try {
+      await Services.addUser(user);
+      alert("User added successfully!");
+      setSignupState(fieldsState);
+    } catch (error) {
+      console.error("Error adding user:", error);
+      alert(
+        "An error occurred while trying to add the user. Please try again later."
+      );
+    }
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
