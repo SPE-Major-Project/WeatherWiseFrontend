@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginFields } from "../constants/FormFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
@@ -8,8 +9,10 @@ const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
-function Login() {
+function Login({ setIsLogIn }) {
   const [loginState, setLoginState] = useState(fieldsState);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -21,7 +24,9 @@ function Login() {
   };
 
   //Handle Login API Integration here
-  const authenticateUser = () => {};
+  const authenticateUser = () => {
+    setIsLogIn(true);
+  };
 
   return (
     <form className="mt-8 space-y-6">
@@ -42,6 +47,7 @@ function Login() {
         ))}
       </div>
       <FormExtra></FormExtra>
+
       <FormAction handleSubmit={handleSubmit} text="Login" />
     </form>
   );
