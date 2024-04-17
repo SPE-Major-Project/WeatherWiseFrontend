@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import CurrentDate from "./Date";
 
-function NavBar() {
+function NavBar({ isLogin, setIsLogIn }) {
   const navigate = useNavigate();
 
   return (
@@ -21,20 +21,35 @@ function NavBar() {
           <div>
             <CurrentDate />
           </div>
-          <div className="">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
-              onClick={() => navigate("/login")}
-            >
-              Log In
-            </button>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
-              onClick={() => navigate("/signup")}
-            >
-              Sign Up
-            </button>
-          </div>
+          {!isLogin && (
+            <div className="">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+                onClick={() => navigate("/login")}
+              >
+                Log In
+              </button>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </button>
+            </div>
+          )}
+          {isLogin && (
+            <div className="">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+                onClick={() => {
+                  setIsLogIn(false);
+                  navigate("/");
+                }}
+              >
+                Log Out
+              </button>
+            </div>
+          )}
         </div>
       </nav>
     </div>
