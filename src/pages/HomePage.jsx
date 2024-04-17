@@ -1,25 +1,52 @@
+import { useState, useEffect } from "react";
 import SearchBox from "../components/SearchBox";
 import WeatherSidePanelPage from "./WeatherSidePanelPage";
+import Services from "../services/Services";
+
 function HomePage({ isLogin }) {
-  const cities = [
-    { id: 1, name: "New York" },
-    { id: 2, name: "Los Angeles" },
-    { id: 3, name: "Chicago" },
-    { id: 4, name: "Houston" },
-    // Add more cities as needed
-  ];
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (isLogin) {
+        let logInId = localStorage.getItem("userId");
+        try {
+          const location = await Services.getLocation(logInId);
+          const uniqueCities = location.data.reduce((acc, loc) => {
+            if (!acc.find((city) => city.locationId === loc.locationId)) {
+              acc.push({
+                locationId: loc.locationId,
+                locationName: loc.locationName,
+              });
+            }
+            return acc;
+          }, []);
+          setCities(uniqueCities);
+        } catch (error) {
+          console.error("Error fetching location:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [isLogin]);
+
   return (
     <div>
       <div className="grid grid-cols-6 gap-4">
         {isLogin && (
           <div className="col-start-1 col-span-2 ml-10 mt-10 ">
-            <WeatherSidePanelPage cities={cities} />
+            {cities.length > 0 && <WeatherSidePanelPage cities={cities} />}
           </div>
         )}
 
         {isLogin && (
           <div className="col-start-4 col-end-6 mt-10 ">
-            <SearchBox />
+            <SearchBox
+              isLogin={isLogin}
+              cities={cities}
+              setCities={setCities}
+            />
           </div>
         )}
       </div>

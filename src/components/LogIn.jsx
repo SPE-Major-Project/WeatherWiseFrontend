@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginFields } from "../constants/FormFields";
 import FormAction from "./FormAction";
-import FormExtra from "./FormExtra";
 import Input from "./Input";
 import Services from "../services/Services";
 
@@ -32,8 +31,11 @@ function Login({ setIsLogIn }) {
 
     try {
       let val = await Services.logInUser(user);
-      if (val.data) {
+
+      if (val.data.userId != null) {
         setIsLogIn(true);
+        navigate("/");
+        localStorage.setItem("userId", `${val.data.userId}`);
       } else {
         alert("Incorrect UserName or Password!! Try Again!!!!!");
       }
@@ -63,7 +65,6 @@ function Login({ setIsLogIn }) {
           />
         ))}
       </div>
-      <FormExtra></FormExtra>
 
       <FormAction handleSubmit={handleSubmit} text="Login" />
     </form>
