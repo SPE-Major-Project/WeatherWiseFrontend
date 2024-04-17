@@ -13,6 +13,10 @@ class Services {
   getLocation(id) {
     return axios.get(Backend_API_URL + "/get_locations/" + id);
   }
+
+  addNewLocation(id, query) {
+    return axios.post(Backend_API_URL + "/" + id + "/add_location", query);
+  }
 }
 
 export default new Services();

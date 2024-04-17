@@ -29,21 +29,24 @@ function HomePage({ isLogin }) {
     };
 
     fetchData();
-  }, [isLogin]); // Run effect when isLogin changes
+  }, [isLogin]);
 
   return (
     <div>
       <div className="grid grid-cols-6 gap-4">
         {isLogin && (
           <div className="col-start-1 col-span-2 ml-10 mt-10 ">
-            {/* Render WeatherSidePanelPage only when cities array is populated */}
             {cities.length > 0 && <WeatherSidePanelPage cities={cities} />}
           </div>
         )}
 
         {isLogin && (
           <div className="col-start-4 col-end-6 mt-10 ">
-            <SearchBox />
+            <SearchBox
+              isLogin={isLogin}
+              cities={cities}
+              setCities={setCities}
+            />
           </div>
         )}
       </div>
