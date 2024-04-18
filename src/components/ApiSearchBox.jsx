@@ -113,27 +113,31 @@ function ApiSearchBox({ setEnable, query, setQuery }) {
   const handleSubmit = () => {
     Services.getWeatherinfo(lat, long, location)
       .then((data) => {
+        // console.log("data" + typeof data);
+        // console.log(data.data.current.dt);
         setwData({
-          main: data.current.weather[0].main,
-          desc: data.current.weather[0].description,
-          id: data.current.weather[0].id,
-          dt: data.current.dt,
-          clouds: data.current.clouds,
-          feelsLike: Math.round(data.current.feels_like),
-          humidity: data.current.humidity,
-          pressure: data.current.pressure,
-          sunrise: data.current.sunrise,
-          sunset: data.current.sunset,
-          temp: Math.round(data.current.temp),
-          uvi: data.current.uvi,
-          windspeed: data.current.wind_speed,
-          zoneShift: data.timezone_offset,
-          daily: data.daily,
-          hourly: data.hourly.slice(0, 24),
+          main: data.data.current.weather[0].main,
+          desc: data.data.current.weather[0].description,
+          id: data.data.current.weather[0].id,
+          dt: data.data.current.dt,
+          clouds: data.data.current.clouds,
+          feelsLike: Math.round(data.data.current.feels_like),
+          humidity: data.data.current.humidity,
+          pressure: data.data.current.pressure,
+          sunrise: data.data.current.sunrise,
+          sunset: data.data.current.sunset,
+          temp: Math.round(data.data.current.temp),
+          uvi: data.data.current.uvi,
+          windspeed: data.data.current.wind_speed,
+          zoneShift: data.data.timezone_offset,
+          daily: data.data.daily,
+          hourly: data.data.hourly.slice(0, 24),
         });
         setShowReport(true);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const getTime = (dt) => {
@@ -211,12 +215,12 @@ function ApiSearchBox({ setEnable, query, setQuery }) {
         </GeoapifyContext>
       </header>
       <div id="dashboard">
-        <div id="today" class="main">
+        <div id="today" className="main">
           <div id="main">
             <img src="..." alt="" />
             <h1 id="temp">
               {wData.temp}
-              <p class="degree">&#8451;</p>
+              <p className="degree">&#8451;</p>
             </h1>
           </div>
           <div id="details">
@@ -256,7 +260,7 @@ function ApiSearchBox({ setEnable, query, setQuery }) {
           <div id="card-container">
             {dData.map((e, i) => {
               return (
-                <div class="dayCard">
+                <div className="dayCard">
                   <p id="day">{i == 0 ? "Today" : getDay(e.dt)}</p>
                   <img src={weatherCheck(e.weather[0].id, e.dt, false)} />
                   {/* Will implement getIcon or whatever its called soon */}
