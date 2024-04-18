@@ -1,0 +1,413 @@
+#App {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+
+    #search-bar {
+        display: flex;
+        flex: 0 1 auto;
+        align-items: center;
+        justify-content: center;
+
+        .geocoder-container {
+            margin: 2.5vh;
+            width: 50vw;
+
+            input {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+        }
+    }
+
+    #dashboard {
+        flex: 1 1 auto;
+        display: none;
+        /* grid-template-columns: 2.3fr 1fr; */
+        grid-template-areas:
+            "daily weekly"
+            "hourly weekly";
+        grid-template-rows: 45% 30%;
+        justify-content: center;
+        gap: 1vw;
+
+        #today {
+            display: grid;
+            grid-template-areas:
+                "main details"
+                "stats stats";
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 60% 40%;
+            /* height: 50%; */
+            width: clamp(700px, 40vw, 1200px);
+            border: 1px solid rgba(0, 0, 0, .125); 
+            border-radius: 0.5rem;
+
+            #main {
+                grid-area: main;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 50%;
+                    margin: auto 0;
+                }
+
+                #temp {
+                    display: flex;
+                    font-size: 3.5rem;
+                    margin: auto 0;
+                }
+            }
+
+            #details {
+                display: flex;
+                flex-direction: column;
+                grid-area: details;
+                margin: auto;
+                font-size: 18px;
+
+                h1,
+                h2 {
+                    font-weight: bold;
+                    text-align: start;
+                    display: flex;
+                    margin: 0;
+                }
+
+                h2 {
+                    font-weight: normal;
+                    margin: 10% 0 0 0;
+                }
+            }
+
+            #stats {
+                grid-area: stats;
+                display: grid;
+                grid-template:
+                    "feels etc"
+                    "asof etc";
+                grid-template-columns: 50% 50%;
+                grid-template-rows: 50% 50%;
+
+                h3 {
+                    margin: 0 0 0 10%;
+                    display: flex;
+                    align-content: center;
+                    flex-wrap: wrap;
+                }
+
+                #feelsLike {
+                    grid-area: feels;
+                    font-size: 2rem;
+
+                    .degree {
+                        margin: 0;
+                    }
+                }
+
+                #asOf {
+                    grid-area: asof;
+                    font-weight: normal;
+                }
+
+                #etc {
+                    grid-area: etc;
+                    display: grid;
+                    grid-template:
+                        "uvi hum"
+                        "sunr suns";
+                    grid-template-columns: 50% 50%;
+                    grid-template-rows: 50% 50%;
+
+                    #uvi {
+                        grid-area: uvi;
+                    }
+
+                    #hum {
+                        grid-area: hum;
+                    }
+
+                    #sunr {
+                        grid-area: sunr;
+                    }
+
+                    #suns {
+                        grid-area: suns;
+                    }
+
+                    .etc {
+                        /* combine font selectors to shorthand */
+                        display: flex;
+                        flex-direction: row;
+                        font-size: clamp(15px, 3vh, 25px);
+                        /* align-items: center; */
+
+
+
+                        p {
+                            margin: 0;
+                            height: fit-content;
+                            align-self: center;
+                        }
+                    }
+                }
+            }
+        }
+
+        #hourly {
+            grid-area: hourly;
+            display: block;
+            border: 1px solid rgba(0, 0, 0, .125); 
+            border-radius: 0.5rem;
+            width: clamp(700px, 40vw, 1200px) !important;
+
+            #chart {
+                width: 90% !important;
+                height: 100% !important;
+                /* display: none !important; */
+                margin: 0 auto;
+            }
+        }
+
+        #weekly {
+            width: clamp(300px, 20vw, 550px);
+            /* height: 80%; */
+            border: 1px solid rgba(0, 0, 0, .125); 
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            grid-area: weekly;
+
+            h2 {
+                margin: 1rem 0;
+            }
+
+            #card-container {
+                display: flex;
+                flex-direction: column;
+                flex: 1 1 auto;
+
+                .dayCard {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin: 0 5%;
+                    flex: 1;
+
+                    img,
+                    p {
+                        flex: 1 1;
+                        display: flex;
+                    }
+
+                    img {
+                        height: 3.5rem;
+                        align-self: center;
+                        /* justify-self: start; */
+                    }
+
+                    p {
+                        align-items: center;
+                        /* font-size: 1.3rem; */
+                    }
+
+                    #temp {
+                        justify-content: start;
+                        /* flex-grow: 2; */
+
+                        .degree {
+                            font-size: 0.8rem !important;
+                        }
+                    }
+                }
+
+                :nth-child(1) {
+
+                    /* 'today' is bolded */
+                    #day {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+        }
+    }
+
+    #default {
+        display: grid;
+        z-index: 1;
+        grid-area: daily;
+        margin: 0 auto 0;
+        grid-template-columns: 50% 50%;
+        grid-template-areas:
+            "icon title"
+            "desc desc";
+        /* height: 80%; */
+        width: clamp(760px, 40vw, 1200px);
+        border: 1px solid rgba(0, 0, 0, .125); 
+        border-radius: 0.5rem;
+
+
+        #icon {
+            grid-area: icon;
+
+            img {
+                width: 80%;
+                display: flex;
+                margin: 0 auto;
+            }
+        }
+
+        #title {
+            grid-area: title;
+            display: flex;
+            align-items: center;
+
+            h1 {
+                display: inline-block;
+                margin: 0;
+                font-weight: bold; 
+                font-size: 3.5rem;
+            }
+        }
+
+        #desc {
+            grid-area: desc;
+            padding: 0 5%;
+
+            p {
+                font-size: 1.5rem;
+                text-align: justify;
+            }
+
+            a {
+                color: #000000;
+
+                &:hover {
+                    font-weight: bold;
+                }
+            }
+
+            #socials {
+                display: flex;
+                justify-content: center;
+                gap: 1vw;
+                margin-bottom: 1rem;
+
+                a {
+                    img {
+                        width: 3rem;
+                    }
+                }
+            }
+        }
+    }
+
+     /* Classes */
+    p.degree {
+        font-size: 40% !important;
+    }
+}
+
+@media (max-width: 960px) {
+    #App {
+
+        header {
+            .geocoder-container {
+                width: 90% !important;
+            }
+        }
+
+        #default {
+            width: 90vw;
+        }
+
+        #dashboard {
+            /* flex-direction: column; */
+            justify-content: center;
+            grid-template-areas:
+                "daily weekly"
+                "hourly hourly";
+            grid-template-columns: 45% 45% !important;
+            grid-template-rows: 40% 40% !important;
+
+            .main {
+                margin: 0 auto;
+                width: 100% !important;
+            }
+
+            #today {
+                #stats {
+                    #etc {
+                        .etc {
+                            align-items: center;
+                            font-size: 1rem;
+
+                            img {
+                                height: 55%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #hourly {
+                width: auto !important;
+            }
+
+            #weekly {
+                width: auto;
+
+                #card-container {
+                    overflow-y: scroll;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #App {
+
+        #default {
+            #title {
+                h1 {
+                    font-size: 2rem;
+                }
+            }
+        }
+
+        #dashboard {
+            grid-template-areas:
+                "daily"
+                "hourly"
+                "weekly";
+            grid-template-rows: 30vh 30vh auto !important;
+            grid-template-columns: 90% !important;
+
+            #today {
+                #stats {
+                    h3 {
+                        margin-left: 5%;
+                    }
+
+                    #feelsLike {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+            #hourly {
+                #chart {
+                    /* margin: 0; */
+                }
+            }
+
+            #weekly {
+                /* display: flex !important; */
+                width: auto;
+            }
+        }
+    }
+}

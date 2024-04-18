@@ -43,7 +43,7 @@ function HomePage({ isLogin }) {
         )}
 
         {isLogin && (
-          <div className="col-start-4 col-end-6 mt-10 ">
+          <div className="col-start-3 col-end-8 mt-10 flex justify-around">
             <SearchBox
               isLogin={isLogin}
               cities={cities}

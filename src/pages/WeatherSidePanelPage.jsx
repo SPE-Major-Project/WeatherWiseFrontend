@@ -1,6 +1,6 @@
 import { useState } from "react";
 import WeatherSidePanel from "../components/WeatherSidePanel";
-import WeatherReport from "../components/WeatherReport";
+
 function WeatherSidePanelPage({ cities, setQuery }) {
   const handleClick = (locationName) => {
     setQuery(locationName);
