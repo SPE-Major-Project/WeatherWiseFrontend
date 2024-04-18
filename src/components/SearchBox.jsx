@@ -3,8 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import WeatherReport from "./WeatherReport";
 import Services from "../services/Services";
 
-const SearchBox = ({ isLogin, cities, setCities }) => {
-  const [query, setQuery] = useState(null);
+const SearchBox = ({ isLogin, cities, setCities, query, setQuery }) => {
   const [enable, setEnable] = useState(false);
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -30,7 +29,6 @@ const SearchBox = ({ isLogin, cities, setCities }) => {
       setQuery("");
     }
   };
-  console.log("inputquery", query);
 
   return (
     <div className="flex flex-col max-w-sm min-w-fit mt-20">
@@ -46,7 +44,9 @@ const SearchBox = ({ isLogin, cities, setCities }) => {
         />
       </div>
       <div className="flex flex-col">
-        <div className="mt-10">{<WeatherReport inComingQuery={query} />}</div>
+        <div className="mt-10 mb-10">
+          {<WeatherReport inComingQuery={query} />}
+        </div>
         <br />
       </div>
       {enable && (

@@ -9,7 +9,6 @@ const WeatherReport = (props) => {
   const query = props.inComingQuery;
   const [weatherData, setWeatherData] = useState([]);
 
-  console.log("incomingQuery", query);
   const getWeatherData = async (query) => {
     query &&
       axios

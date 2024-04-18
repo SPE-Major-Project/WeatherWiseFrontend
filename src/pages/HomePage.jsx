@@ -4,8 +4,8 @@ import WeatherSidePanelPage from "./WeatherSidePanelPage";
 import Services from "../services/Services";
 
 function HomePage({ isLogin }) {
+  const [query, setQuery] = useState(null);
   const [cities, setCities] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       if (isLogin) {
@@ -36,7 +36,9 @@ function HomePage({ isLogin }) {
       <div className="grid grid-cols-6 gap-4">
         {isLogin && (
           <div className="col-start-1 col-span-2 ml-10 mt-10 ">
-            {cities.length > 0 && <WeatherSidePanelPage cities={cities} />}
+            {cities.length > 0 && (
+              <WeatherSidePanelPage cities={cities} setQuery={setQuery} />
+            )}
           </div>
         )}
 
@@ -46,13 +48,15 @@ function HomePage({ isLogin }) {
               isLogin={isLogin}
               cities={cities}
               setCities={setCities}
+              query={query}
+              setQuery={setQuery}
             />
           </div>
         )}
       </div>
       {!isLogin && (
         <div className="flex items-start justify-center pt-20">
-          <SearchBox />
+          <SearchBox query={query} setQuery={setQuery} />
         </div>
       )}
     </div>
