@@ -33,9 +33,9 @@ function HomePage({ isLogin }) {
 
   return (
     <div>
-      <div className="grid grid-cols-6 gap-4">
+      <div className="">
         {isLogin && (
-          <div className="col-start-1 col-span-2 ml-10 mt-10 ">
+          <div className="col-start-1 col-span-2 ml-10 mt-10 flex justify-center ">
             {cities.length > 0 && (
               <WeatherSidePanelPage cities={cities} setQuery={setQuery} />
             )}

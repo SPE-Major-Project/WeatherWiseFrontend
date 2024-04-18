@@ -33,9 +33,7 @@ const SearchBox = ({ isLogin, cities, setCities, query, setQuery }) => {
   return (
     <div className="flex flex-col ">
       <div className="flex items-center gap-5 ">
-          <ApiSearchBox setEnable={setEnable} setQuery={setQuery} />
-          
-      
+        <ApiSearchBox setEnable={setEnable} query={query} setQuery={setQuery} />
       </div>
 
       {isLogin && enable && (
