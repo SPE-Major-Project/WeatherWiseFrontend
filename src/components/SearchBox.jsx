@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BsSearch } from "react-icons/bs";
-import WeatherReport from "./WeatherReport";
+
 import Services from "../services/Services";
+import ApiSearchBox from "./ApiSearchBox";
 
 const SearchBox = ({ isLogin, cities, setCities, query, setQuery }) => {
   const [enable, setEnable] = useState(false);
@@ -31,25 +31,12 @@ const SearchBox = ({ isLogin, cities, setCities, query, setQuery }) => {
   };
 
   return (
-    <div className="flex flex-col max-w-sm min-w-fit mt-20">
-      <div className="flex items-center gap-5 bg-white rounded-lg h-12 w-80">
-        <BsSearch size={20} className="ml-2" />
-        <input
-          className="h-full w-60 text-lg outline-none "
-          type="text"
-          name="query"
-          id="query"
-          placeholder="Weather in your city?"
-          onKeyDown={handleKeyDown}
-        />
+    <div className="flex flex-col ">
+      <div className="flex items-center gap-5 ">
+        <ApiSearchBox setEnable={setEnable} query={query} setQuery={setQuery} />
       </div>
-      <div className="flex flex-col">
-        <div className="mt-10 mb-10">
-          {<WeatherReport inComingQuery={query} />}
-        </div>
-        <br />
-      </div>
-      {enable && (
+
+      {isLogin && enable && (
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
           onClick={handleClick}
@@ -57,7 +44,7 @@ const SearchBox = ({ isLogin, cities, setCities, query, setQuery }) => {
           save
         </button>
       )}
-      {!enable && (
+      {/* {isLogin && !enable && (
         <button
           className="bg-blue-300 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded mr-4"
           disabled
@@ -65,7 +52,7 @@ const SearchBox = ({ isLogin, cities, setCities, query, setQuery }) => {
         >
           save
         </button>
-      )}
+      )} */}
     </div>
   );
 };

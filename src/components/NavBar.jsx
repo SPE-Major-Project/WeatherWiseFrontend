@@ -9,7 +9,7 @@ function NavBar({ isLogin, setIsLogIn }) {
       <nav className="bg-white border-green-200 dark:bg-green-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/">
-            <img src="add Image url" className="h-8" alt="Logo Image" />
+            {/* <img src="add Image url" className="h-8" alt="Logo Image" /> */}
             <div className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Weather App
             </div>
