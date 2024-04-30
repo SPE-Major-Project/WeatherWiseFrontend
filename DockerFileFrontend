@@ -1,4 +1,5 @@
 FROM node:alpine AS development
+EXPOSE 3000
 ENV NODE_ENV development
 WORKDIR /react-app
 COPY ./package*.json /react-app
