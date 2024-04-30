@@ -5,15 +5,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: weatherwise
+      app: weatherwise-frontend
   replicas: 2 
   template:
     metadata:
       labels:
-        app: weatherwise
+        app: weatherwise-frontend
     spec:
       containers:
-        - name: weatherwise
+        - name: weatherwise-frontend
           image: 48483/weatherwisefrontend:latest
           imagePullPolicy: Always
           ports:
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: weatherwise-ssvc
+  name: weatherwise-frontend-ssvc
 spec:
   selector:
-    app: weatherwise
+    app: weatherwise-frontend
   ports:
     - protocol: "TCP"
       port: 3000 
