@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
-  name: weatherwise-frontend-deployment
+  name: weatherwise-deployment
 spec:
   selector:
     matchLabels:
-      app: weatherwise-frontend
+      app: weatherwise
   replicas: 2 
   template:
     metadata:
       labels:
-        app: weatherwise-frontend
+        app: weatherwise
     spec:
       containers:
-        - name: weatherwise-frontend
+        - name: weatherwise
           image: 48483/weatherwisefrontend:latest
           imagePullPolicy: Always
           ports:
