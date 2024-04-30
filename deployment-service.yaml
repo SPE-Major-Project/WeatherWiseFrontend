@@ -28,9 +28,9 @@ metadata:
   name: weatherwise-frontend-ssvc
 spec:
   selector:
-    app: weatherwise-frontend
+    app: weatherwise
   ports:
     - protocol: "TCP"
       port: 3000 
       targetPort: 3000 
-  type: LoadBalancer 
+  type: LoadBalancer
