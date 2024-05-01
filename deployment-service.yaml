@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: weatherwise-frontend
-  replicas: 2 
+  replicas: 1
   template:
     metadata:
       labels:
@@ -28,7 +28,7 @@ metadata:
   name: weatherwise-frontend-ssvc
 spec:
   selector:
-    app: weatherwise-frontend
+    app: weatherwise-ssvc
   ports:
     - protocol: "TCP"
       port: 3000 
