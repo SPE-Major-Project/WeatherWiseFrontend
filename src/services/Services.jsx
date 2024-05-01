@@ -1,7 +1,7 @@
 import axios from "axios";
 import { resolve } from "chart.js/helpers";
 
-const Backend_API_URL = "http://weatherwise-b-ssvc:31187/api/user";
+const Backend_API_URL = "http://64.227.141.176/api/user";
 class Services {
   addUser(user) {
     return axios.post(Backend_API_URL + "/register", user);
