@@ -28,6 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://weatherwise-b-ssvc"
   "eslintConfig": {
     "extends": [
       "react-app",
