@@ -1,36 +1,33 @@
-apiVersion: apps/v1
-kind: Deployment 
+apiVersion: v1
+kind: Service
 metadata:
-  name: weatherwise-deployment
+  name: frontend-ssvc
+  namespace: webapps
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: webapps
 spec:
   selector:
     matchLabels:
-      app: weatherwise
-  replicas: 2 
+      app: frontend
+  replicas: 1
   template:
     metadata:
       labels:
-        app: weatherwise
+        app: frontend
     spec:
       containers:
-        - name: weatherwise
-          image: 48483/weatherwisefrontend:latest
+        - image: 48483/weatherwisefrontend:latest
+          name: frontend
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000 
-
-
----
-
-apiVersion: v1 
-kind: Service 
-metadata: 
-  name: weatherwise-ssvc
-spec:
-  selector:
-    app: weatherwise
-  ports:
-    - protocol: "TCP"
-      port: 3000 
-      targetPort: 3000 
-  type: LoadBalancer
+            - containerPort: 3000
