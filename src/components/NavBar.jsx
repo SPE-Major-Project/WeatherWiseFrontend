@@ -11,7 +11,7 @@ function NavBar({ isLogin, setIsLogIn }) {
           <Link to="/">
             {/* <img src="add Image url" className="h-8" alt="Logo Image" /> */}
             <div className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Weather App
+              Weather Appp
             </div>
           </Link>
           <div>
