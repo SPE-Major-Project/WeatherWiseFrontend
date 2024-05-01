@@ -1,20 +1,20 @@
 apiVersion: apps/v1
-kind: Deployment # Kubernetes resource kind we are creating
+kind: Deployment 
 metadata:
-  name: frontend-deployment
+  name: weatherwise-deployment
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: weatherwise
   replicas: 2 
   template:
     metadata:
       labels:
-        app: frontend
+        app: weatherwise
     spec:
       containers:
-        - name: frontend
-          image: 48483/weatherwisefrontend:latest 
+        - name: weatherwise
+          image: 48483/weatherwisefrontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000 
@@ -25,12 +25,12 @@ spec:
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: frontend-ssvc
+  name: weatherwise-ssvc
 spec:
   selector:
-    app: frontend
+    app: weatherwise
   ports:
     - protocol: "TCP"
       port: 3000 
-      targetPort: 3000
+      targetPort: 3000 
   type: LoadBalancer
