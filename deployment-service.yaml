@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
-  name: weatherwise-deployment
+  name: weatherwise-frontend-deployment
 spec:
   selector:
     matchLabels:
       app: weatherwise
-  replicas: 1
+  replicas: 2 
   template:
     metadata:
       labels:
