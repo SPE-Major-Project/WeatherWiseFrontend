@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment # Kubernetes resource kind we are creating
 metadata:
   name: frontend-deployment
 spec:
@@ -13,8 +13,8 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: frontend-container
-          image: 48483/weatherwisefrontend:latest
+        - name: frontend
+          image: 48483/weatherwisefrontend:latest 
           imagePullPolicy: Always
           ports:
             - containerPort: 3000 
@@ -25,12 +25,12 @@ spec:
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: frontend-service
+  name: frontend-ssvc
 spec:
   selector:
     app: frontend
   ports:
     - protocol: "TCP"
       port: 3000 
-      targetPort: 3000 
+      targetPort: 3000
   type: LoadBalancer
