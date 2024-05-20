@@ -1,7 +1,7 @@
 import axios from "axios";
 import { resolve } from "chart.js/helpers";
 
-const Backend_API_URL = "http://localhost:8082/user";
+const Backend_API_URL = "http://139.59.33.128:8082/user";
 class Services {
   addUser(user) {
     return axios.post(Backend_API_URL + "/register", user);
